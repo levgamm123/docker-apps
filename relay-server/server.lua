@@ -1,6 +1,6 @@
 local copas = require("copas")
 local websocket = require("websocket")
-local luasec = require("luasec") 
+local ssl = require("ssl") 
 local bit = require("bit") 
 
 --go go gadget stolen code
