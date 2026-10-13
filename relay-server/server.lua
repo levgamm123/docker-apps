@@ -1,5 +1,6 @@
 local copas = require("copas")
 local websocket = require("websocket")
+local socket = require("socket") 
 
 --go go gadget stolen code
 local function split(str, deliminator, plain, limit)
@@ -71,12 +72,7 @@ end
 end
 
 
-local ws_server = websocket.server.copas.listen({
-    interface = "*", 
-    host = "0.0.0.0",
-    port = tonumber(os.getenv("PORT")) or 443,
-    protocols = {default = handler} 
-})
+copas.addserver(socket.bind("*", 443), handler) 
 
 print("serber onlin!!! on port " ..os.getenv("PORT") or "443")
 copas.loop()
