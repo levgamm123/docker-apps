@@ -40,6 +40,7 @@ local input
 
 while true do 
 ::beans::
+copas.sleep(0.1) 
 input = ws:receive()
 if type(input) ~= "string" then 
 connected[id] = nil 
@@ -63,6 +64,7 @@ else ws:send("dude you are a receiver (or not logged in at all)")
 end
 end
 
+copas.sleep(0.1) 
 end
 end
 
