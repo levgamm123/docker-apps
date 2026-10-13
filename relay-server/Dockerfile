@@ -2,7 +2,8 @@ FROM alpine:latest
 
 RUN apk update
 
-RUN apk add --no-cache luajit luarocks git build-base 
+RUN apk add --no-cache luajit 
+RUN apk add --no-cache luarocks 
 RUN luarocks install lua-websockets 
 RUN luarocks install copas 
 
