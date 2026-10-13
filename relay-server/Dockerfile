@@ -14,9 +14,8 @@ RUN apk add --no-cache \
 
 RUN ln -s /usr/bin/luarocks-5.1 /usr/bin/luarocks
 
-RUN luarocks init --lua-versions "5.1" 
-RUN luarocks install lua-websockets 
-RUN luarocks install copas 
+RUN luarocks install lua-websockets --lua-version=5.1
+RUN luarocks install copas --lua-version=5.1
 
 COPY server.lua /app/server.lua
 WORKDIR /app
