@@ -69,9 +69,9 @@ end
 
 local ws_server = websocket.server.copas.listen({
     host = "0.0.0.0",
-    port = 8080,
+    port = tonumber(os.getenv("PORT")) or 443,
     protocols = {default = handler}
 })
 
-print("serber onlin!!!")
+print("serber onlin!!! on port " ..os.getenv("PORT") or "443")
 copas.loop()
