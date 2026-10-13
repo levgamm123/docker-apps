@@ -10,6 +10,7 @@ RUN apk add --no-cache \
     gcc \
     musl-dev \
     make \
+    openssl-dev \
     git
 
 RUN ln -s /usr/bin/luarocks-5.1 /usr/bin/luarocks
