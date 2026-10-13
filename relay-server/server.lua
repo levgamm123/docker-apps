@@ -73,7 +73,7 @@ local ws_server = websocket.server.copas.listen({
     interface = "*", 
     host = "0.0.0.0",
     port = tonumber(os.getenv("PORT")) or 443,
-    default = handler 
+    default = handler, 
     protocols = {}
 })
 
