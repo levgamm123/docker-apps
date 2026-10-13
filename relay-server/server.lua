@@ -32,6 +32,7 @@ local function generate_id()
 end
 
 local function handler(ws)
+copas.sleep(0.1) 
 local id = generate_id()
 connected[id] = ws
 print("bro connected: " .. id)
