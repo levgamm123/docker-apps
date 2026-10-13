@@ -12,6 +12,8 @@ RUN apk add --no-cache \
     make \
     git
 
+RUN ln -s /usr/bin/luarocks-5.1 /usr/bin/luarocks
+
 RUN luarocks init --lua-versions "5.1" 
 RUN luarocks install lua-websockets 
 RUN luarocks install copas 
