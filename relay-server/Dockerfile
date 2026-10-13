@@ -21,5 +21,6 @@ COPY server.lua /app/server.lua
 WORKDIR /app
 
 EXPOSE 443
+EXPOSE 10000
 
 CMD ["luajit", "server.lua"]
