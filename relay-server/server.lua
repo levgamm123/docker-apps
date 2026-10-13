@@ -1,6 +1,6 @@
 local copas = require("copas")
 local websocket = require("websocket")
-local server = require("websocket.server")
+local server = require("websocket").server
 
 --go go gadget stolen code
 local function split(str, deliminator, plain, limit)
