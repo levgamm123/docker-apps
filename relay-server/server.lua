@@ -1,6 +1,5 @@
 local copas = require("copas")
 local websocket = require("websocket")
-local server = require("websocket").server
 
 --go go gadget stolen code
 local function split(str, deliminator, plain, limit)
@@ -68,10 +67,10 @@ end
 end
 
 
-local ws_server = server.new({
+local ws_server = websocket.server.copas.listen({
     host = "0.0.0.0",
     port = 8080,
-    handler = handler
+    protocols = {default = handler}
 })
 
 print("serber onlin!!!")
