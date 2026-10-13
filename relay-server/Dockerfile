@@ -15,12 +15,12 @@ RUN apk add --no-cache \
 RUN ln -s /usr/bin/luarocks-5.1 /usr/bin/luarocks
 
 RUN luarocks install lua-websockets --lua-version=5.1
+RUN luarocks install luasocket --lua-version=5.1
 RUN luarocks install copas --lua-version=5.1
 
 COPY server.lua /app/server.lua
 WORKDIR /app
 
 EXPOSE 443
-EXPOSE 10000
 
 CMD ["luajit", "server.lua"]
