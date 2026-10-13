@@ -37,6 +37,7 @@ connected[id] = ws
 print("bro connected: " .. id)
 
 local input 
+ws:send("hi twin") 
 
 while true do 
 ::beans::
@@ -73,7 +74,7 @@ local ws_server = websocket.server.copas.listen({
     interface = "*", 
     host = "0.0.0.0",
     port = tonumber(os.getenv("PORT")) or 443,
-    default = handler, 
+    protocols = {default = handler} 
 })
 
 print("serber onlin!!! on port " ..os.getenv("PORT") or "443")
