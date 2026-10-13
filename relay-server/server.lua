@@ -1,6 +1,5 @@
 local copas = require("copas")
 local websocket = require("websocket")
-local socket = require("socket") 
 
 --go go gadget stolen code
 local function split(str, deliminator, plain, limit)
@@ -47,9 +46,10 @@ copas.sleep(0.1)
 input = ws:receive()
 if type(input) ~= "string" then 
 connected[id] = nil 
-print("bro disconnected: " ..id)
+print("bro disconnected: " ..id) 
 if loggedin["sender"] == ws then loggedin["sender"] = nil end 
 if loggedin["receiver"] == ws then loggedin["receiver"] = nil end 
+ws:close() 
 return end 
 local parsed = split(input, " ")
 
@@ -71,8 +71,11 @@ copas.sleep(0.1)
 end
 end
 
-
-copas.addserver(socket.bind("*", 443), handler) 
+local server = websocket.server.copas.listen({
+        port = 443, 
+        interface = "*", 
+        protocols = {default = handler}
+})
 
 print("serber onlin!!! on port " ..os.getenv("PORT") or "443")
 copas.loop()
