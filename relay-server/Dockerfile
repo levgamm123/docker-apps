@@ -20,6 +20,6 @@ RUN luarocks install copas --lua-version=5.1
 COPY server.lua /app/server.lua
 WORKDIR /app
 
-EXPOSE 8080
+EXPOSE 443
 
 CMD ["luajit", "server.lua"]
