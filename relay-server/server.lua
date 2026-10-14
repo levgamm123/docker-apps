@@ -1,9 +1,13 @@
+-- Source - https://stackoverflow.com/q/80009846
+-- Posted by NoikOnesjor
+-- Retrieved 2026-10-14, License - CC BY-SA 4.0
+
 local copas = require("copas")
 local websocket = require("websocket")
 local ssl = require("ssl") 
 local bit = require("bit") 
 
---go go gadget stolen code
+--thanks, cc.strings :3 
 local function split(str, deliminator, plain, limit)
 
     local out, out_n, pos = {}, 0, 1
@@ -30,17 +34,17 @@ local connected = {}
 local loggedin = {} 
 
 local function generate_id()
-    return tostring(math.random(100000, 999999))
+return tostring(math.random(100000, 999999))
 end
 
 local function handler(ws)
 copas.sleep(0.1) 
 local id = generate_id()
 connected[id] = ws
-print("bro connected: " .. id)
+print("bro connected: " .. id) --connection log 
 
 local input 
-ws:send("hi twin") 
+ws:send("hi twin") --test response immediately after connection 
 
 while true do 
 ::beans::
@@ -55,12 +59,14 @@ ws:close()
 return end 
 local parsed = split(input, " ")
 
+--login handling 
 if parsed[1] == "LOGIN" then 
 if parsed[2] == "sender" and parsed[3] == "beans6969" then ws:send("success") print("bro logged in: " ..id.. ", sender") loggedin["sender"] = ws 
 elseif parsed[2] == "receiver" and parsed[3] == "meHiThreadOpener" then ws:send("success") print("bro logged in: " ..id.. ", receiver") loggedin["receiver"] = ws 
 else ws:send("wrong login or password bitch") end 
 end
 
+--message relay handling 
 if parsed[1] == "SEND" then 
 if ws == loggedin["sender"] then 
 if not loggedin["receiver"] then ws:send("nbopdoy CARES abt ur commanbd") goto beans end 
@@ -73,11 +79,13 @@ copas.sleep(0.1)
 end
 end
 
+--start server 
 local server = websocket.server.copas.listen({
-        port = 443, 
-        interface = "*", 
+        port = tonumber(os.getenv("PORT")) or 443, 
+        interface = "0.0.0.0", 
         protocols = {default = handler}
 })
 
-print("serber onlin!!! on port " ..os.getenv("PORT") or "443")
+--log if server was initiated 
+print("serber onlin!!! on port " ..os.getenv("PORT") or "443") --this is strange because this still logs on startup 
 copas.loop()
