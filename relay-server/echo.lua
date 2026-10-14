@@ -14,7 +14,7 @@ handle:send(input)
 end
 end
 
-local server = assert(socket.bind("*", port) 
+local server = assert(socket.bind("*", port)) 
 copas.addserver(server, handler) 
 
 print("echo serber onlin!!! on port " ..tostring(port))  
