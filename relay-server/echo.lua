@@ -3,10 +3,11 @@ local socket = require("socket")
 
 local function handler(handle) 
 handle:send("hello") 
-print("connected to guy") 
+print("bro connected") 
 while true do 
 local input = handle:receive() 
-if type(input) ~= "string" then print("guy disconnected") handle:close() return end 
+if type(input) ~= "string" then print("bro disconnected") handle:close() return end 
+print("bro wrote: " ..input) 
 handle:send(input)
 end
 end
