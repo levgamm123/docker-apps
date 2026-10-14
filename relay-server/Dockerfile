@@ -24,4 +24,4 @@ WORKDIR /app
 
 EXPOSE 443
 
-CMD ["luajit", "server.lua"]
+CMD ["luajit", "echo.lua"]
