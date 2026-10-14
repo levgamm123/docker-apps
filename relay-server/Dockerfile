@@ -22,6 +22,7 @@ RUN luarocks install copas --lua-version=5.1
 COPY echo.lua /app/echo.lua
 WORKDIR /app
 
+EXPOSE 10000 
 EXPOSE 443
 
 CMD ["luajit", "echo.lua"]
