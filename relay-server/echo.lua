@@ -4,6 +4,7 @@ local ssl = require("ssl")
 local bit = require("bit") 
 
 local function handler(ws)
+ws:send("hi") 
 print("client connected") 
 while true do 
 local input = ws.receive() 
@@ -14,8 +15,8 @@ end
 
 local server = websocket.server.copas.listen({
         port = tonumber(os.getenv("PORT")) or 443, 
-        interface = "localhost", 
-        protocols = {default = handler}
+        interface = "0.0.0.0", 
+        protocols = {echo = handler}
 })
 
 print("echo serber onlin!!! on port " ..os.getenv("PORT") or "443") 
