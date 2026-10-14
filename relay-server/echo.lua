@@ -12,10 +12,10 @@ local id = newid()
 connected[id] = handle 
 handle = copas.wrap(handle) 
 handle:send("hello") 
-print("bro connected") 
+print("bro connected: " ..id) 
 while true do 
 local input = handle:receive() 
-if type(input) ~= "string" then print("bro disconnected") connected[id] = nil handle:close() return end 
+if type(input) ~= "string" then print("bro disconnected: " ..id) connected[id] = nil handle:close() return end 
 print("bro wrote: " ..input) 
 handle:send(input)
 end
