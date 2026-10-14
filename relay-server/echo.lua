@@ -6,7 +6,7 @@ handle:send("hello")
 print("connected to guy") 
 while true do 
 local input = handle:receive() 
-if not input then print("guy disconnected") handle:close() end 
+if type(input) ~= "string" then print("guy disconnected") handle:close() end 
 handle:send(input)
 end
 end
