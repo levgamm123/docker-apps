@@ -15,7 +15,7 @@ handle:send("hello")
 print("bro connected: " ..id) 
 while true do 
 local input = handle:receive() 
-if type(input) ~= "string" then print("bro disconnected: " ..id) connected[id] = nil handle:close() return end 
+if type(input) ~= "string" then print("bro disconnected: " ..id) connected[id] = nil handle:close() break end 
 print("bro wrote: " ..input) 
 handle:send(input)
 end
