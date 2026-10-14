@@ -1,21 +1,17 @@
 local copas = require("copas")
-local websocket = require("websocket")
-local ssl = require("ssl") 
-local bit = require("bit") 
+local socket = require("socket") 
 
-local function handler(ws)
-ws:send("hi") 
-print("client connected") 
-local headers = ws.handshake_request or {} 
-print(headers) 
-print("dropped client") ws:close() 
+local function handler(handle) 
+handle:send("hello") 
+print("connected to guy") 
+while true do 
+local input = handle:receive() 
+if not input then print("guy disconnected") handle:close() end 
+handle:send(input)
+end
 end
 
-local server = websocket.server.copas.listen({
-        port = tonumber(os.getenv("PORT")) or 443, 
-        interface = "0.0.0.0", 
-        protocols = {default = handler}
-})
+copas.addserver(socket.bind("0.0.0.0", tonumber(os.getenv("PORT")) or 10000), function(handle) copas.addthread(handler, handle) end)
 
-print("echo serber onlin!!! on port " ..os.getenv("PORT") or "443") 
+print("echo serber onlin!!! on port " ..os.getenv("PORT") or "10000") 
 copas.loop()
