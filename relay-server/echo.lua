@@ -12,7 +12,7 @@ handle:send(input)
 end
 end
 
-copas.addserver(socket.bind("0.0.0.0", tonumber(os.getenv("PORT")) or 10000), function(handle) copas.addthread(handler, handle) end)
+copas.addserver(socket.bind("0.0.0.0", tonumber(os.getenv("PORT")) or 10000), function(handle) copas.addthread(handler, copas.wrap(handle)) end)
 
 print("echo serber onlin!!! on port " ..os.getenv("PORT") or "10000") 
 copas.loop()
