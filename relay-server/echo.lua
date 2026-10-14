@@ -1,7 +1,9 @@
 local copas = require("copas")
 local socket = require("socket") 
+local port = tonumber(os.getenv("PORT")) or 10000 
 
 local function handler(handle) 
+handle = copas.wrap(handle) 
 handle:send("hello") 
 print("bro connected") 
 while true do 
@@ -12,7 +14,8 @@ handle:send(input)
 end
 end
 
-copas.addserver(socket.bind("0.0.0.0", tonumber(os.getenv("PORT")) or 10000), function(handle) copas.addthread(handler, copas.wrap(handle)) end)
+local server = assert(socket.bind("*", port) 
+copas.addserver(server, handler) 
 
-print("echo serber onlin!!! on port " ..os.getenv("PORT") or "10000") 
+print("echo serber onlin!!! on port " ..tostring(port))  
 copas.loop()
