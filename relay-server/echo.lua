@@ -6,11 +6,9 @@ local bit = require("bit")
 local function handler(ws)
 ws:send("hi") 
 print("client connected") 
-while true do 
-local input = ws:receive() 
-if not input then print("client disconnected") ws:close() return end 
-ws:send(input) 
-end
+local headers = ws.handshake_request or {} 
+print(headers) 
+print("dropped client") ws:close() 
 end
 
 local server = websocket.server.copas.listen({
