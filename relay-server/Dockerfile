@@ -19,7 +19,7 @@ RUN luarocks install lua-websockets --lua-version=5.1
 RUN luarocks install luasec --lua-version=5.1
 RUN luarocks install copas --lua-version=5.1
 
-COPY server.lua /app/server.lua
+COPY echo.lua /app/echo.lua
 WORKDIR /app
 
 EXPOSE 443
