@@ -14,10 +14,9 @@ end
 
 local server = websocket.server.copas.listen({
         port = tonumber(os.getenv("PORT")) or 443, 
-        interface = "0.0.0.0", 
+        interface = "localhost", 
         protocols = {default = handler}
 })
 
---log if server was initiated 
-print("serber onlin!!! on port " ..os.getenv("PORT") or "443") --this is strange because this still logs on startup 
+print("echo serber onlin!!! on port " ..os.getenv("PORT") or "443") 
 copas.loop()
